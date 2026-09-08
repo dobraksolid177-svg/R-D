@@ -1,23 +1,19 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/*.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    }
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+  "functions": {
+    "api/*.js": {
+      "runtime": "nodejs18.x"
     },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+    "api/status/[email].js": {
+      "runtime": "nodejs18.x"
+    },
+    "api/export/[email].js": {
+      "runtime": "nodejs18.x"
+    },
+    "api/history/[email].js": {
+      "runtime": "nodejs18.x"
     }
-  ]
+  }
 }
